@@ -47,10 +47,10 @@ body {
 .SubBtn {
   width: 120px;
   height: 60px;
-  background-color: #578ef5;
+  background-color: #000000;
   color: white;
   font-size: 20px;
-  border: 1px solid #578ef5;
+  border: 1px solid #000000;
   border-radius: 5px;
   margin-left: auto;
   margin-top: 80px;

@@ -6,9 +6,11 @@
 body {
   background-color: rgb(245, 245, 245);
 }
-
+.logo {
+  padding-top: 5px;
+}
 .logo img {
-  width: 150px;
+  width: 200px;
   background-color: transparent;
   margin-left: 10px;
 }

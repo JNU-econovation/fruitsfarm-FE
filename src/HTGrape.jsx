@@ -32,6 +32,13 @@ const HTGrape = () => {
         );
 
         const result = await response.json();
+
+        if (result.status_code === 401) {
+          alert('로그인 후 이용해주세요.');
+          navigate('/login');
+          return;
+        }
+
         if (result.success) {
           let parsedProgress;
           try {
