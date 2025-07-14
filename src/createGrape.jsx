@@ -76,7 +76,7 @@ const CreateGrape = () => {
             placeholder="한 줄 목표를 입력하세요..."
             value={goal}
             onChange={(e) => setgoal(e.target.value)}
-            maxLength={80}
+            maxLength={50}
           ></input>
           <input
             className="inputText"
@@ -84,7 +84,7 @@ const CreateGrape = () => {
             placeholder="응원하는 말을 입력하세요..."
             value={cheer}
             onChange={(e) => setcheer(e.target.value)}
-            maxLength={80}
+            maxLength={50}
           ></input>
           <input
             className="inputDate"
@@ -92,7 +92,7 @@ const CreateGrape = () => {
             placeholder="시작일"
             value={startDate}
             onChange={handleDateClick}
-            maxLength={80}
+            maxLength={50}
           ></input>
           <button className="SubBtn" onClick={handleSubmit}>
             생성

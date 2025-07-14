@@ -37,7 +37,7 @@ const Main = () => {
         }
 
         if (result.success && result.data.length > 0) {
-          navigate('/main'); //바꾸기
+          navigate('/mainList');
         } else {
           navigate('/mainCreate');
         }

@@ -9,6 +9,7 @@ import Create from './create';
 import CreateGrape from './createGrape';
 import HTGrape from './HTGrape';
 import Main from './main';
+import MainList from './mainList';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="createGrape" element={<CreateGrape />} />
             <Route path="HTGrape" element={<HTGrape />} />
             <Route path="main" element={<Main />} />
+            <Route path="mainList" element={<MainList />} />
           </Route>
         </Routes>
       </div>

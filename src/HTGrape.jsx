@@ -33,6 +33,8 @@ const HTGrape = () => {
 
         const result = await response.json();
 
+        console.log(result); //지우기 currentdate 끝내면
+
         if (result.status_code === 401) {
           alert('로그인 후 이용해주세요.');
           navigate('/login');

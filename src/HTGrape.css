@@ -62,6 +62,12 @@ body {
   padding: 10px;
   color: rgb(84, 84, 84);
   border-radius: 5px;
+  max-width: 200px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-height: 80px;
+  overflow-y: auto;
 }
 
 .date-box {
