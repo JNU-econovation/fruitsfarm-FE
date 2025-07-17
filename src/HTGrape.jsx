@@ -120,7 +120,7 @@ const HTGrape = () => {
   return (
     <div className="main-container-CG">
       <main className="main-content-CG">
-        <div className="create-box-CG">
+        <div className="create-box-CG-gr">
           <h1>포도 습관 기록</h1>
           <div className="HT">
             <div className="HT-Text">

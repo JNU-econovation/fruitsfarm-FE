@@ -3,10 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './createGrape.css';
 import config from './config';
-/*
-import { Link } from 'react-router-dom';
-
-*/
 
 const CreateGrape = () => {
   const [goal, setgoal] = useState('');
@@ -21,10 +17,11 @@ const CreateGrape = () => {
   const handleSubmit = async () => {
     if (!goal && !cheer && !startDate) {
       alert('모든 항목을 입력해 주세요!');
+      return;
     }
 
     const requestBody = {
-      type: 'grape', //수박은 수박으로
+      type: 'grape',
       achievement: goal,
       motivation: cheer,
       startDate: startDate,
@@ -67,8 +64,7 @@ const CreateGrape = () => {
   return (
     <div className="main-container-CG">
       <main className="main-content-CG">
-        {/*로그인 확인해서 다르게 보여줘야 함*/}
-        <div className="create-box-CG">
+        <div className="create-box-CG-gr">
           <h1>포도 습관 기록</h1>
           <input
             className="inputText"

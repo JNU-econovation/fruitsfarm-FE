@@ -140,7 +140,7 @@ const HTwm = () => {
   return (
     <div className="main-container-CG">
       <main className="main-content-CG">
-        <div className="create-box-CG">
+        <div className="create-box-CG-wm">
           <h1>수박 습관 기록</h1>
           <div className="HT">
             <div className="HT-Text">

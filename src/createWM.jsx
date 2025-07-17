@@ -17,6 +17,7 @@ const CreateWM = () => {
   const handleSubmit = async () => {
     if (!goal && !cheer && !startDate) {
       alert('모든 항목을 입력해 주세요!');
+      return;
     }
 
     const requestBody = {
@@ -63,7 +64,7 @@ const CreateWM = () => {
   return (
     <div className="main-container-CG">
       <main className="main-content-CG">
-        <div className="create-box-CG">
+        <div className="create-box-CG-wm">
           <h1>수박 습관 기록</h1>
           <input
             className="inputText"
