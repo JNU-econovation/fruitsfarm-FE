@@ -14,8 +14,7 @@ const Create = () => {
     navigate('/createGrape');
   };
   const GoHTWM = () => {
-    navigate('/main');
-    /*바꾸기*/
+    navigate('/createWM');
   };
 
   return (

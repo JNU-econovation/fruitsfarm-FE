@@ -99,6 +99,11 @@ button:hover {
   white-space: normal;
 }
 
+.ach:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .period {
   flex: 1;
   text-align: center;

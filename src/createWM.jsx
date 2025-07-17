@@ -1,14 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './createGrape.css';
+import './createWM.css';
 import config from './config';
-/*
-import { Link } from 'react-router-dom';
 
-*/
-
-const CreateGrape = () => {
+const CreateWM = () => {
   const [goal, setgoal] = useState('');
   const [cheer, setcheer] = useState('');
   const [startDate, setstartDate] = useState('');
@@ -24,7 +20,7 @@ const CreateGrape = () => {
     }
 
     const requestBody = {
-      type: 'grape', //수박은 수박으로
+      type: 'watermelon',
       achievement: goal,
       motivation: cheer,
       startDate: startDate,
@@ -55,7 +51,7 @@ const CreateGrape = () => {
 
       if (result.success) {
         const habitTrackerId = result.data.habitTrackerId;
-        navigate(`/HTGrape?id=${habitTrackerId}`);
+        navigate(`/HTwm?id=${habitTrackerId}`);
       } else {
         alert('생성에 실패했습니다.');
       }
@@ -67,9 +63,8 @@ const CreateGrape = () => {
   return (
     <div className="main-container-CG">
       <main className="main-content-CG">
-        {/*로그인 확인해서 다르게 보여줘야 함*/}
         <div className="create-box-CG">
-          <h1>포도 습관 기록</h1>
+          <h1>수박 습관 기록</h1>
           <input
             className="inputText"
             type="text"
@@ -103,4 +98,4 @@ const CreateGrape = () => {
   );
 };
 
-export default CreateGrape;
+export default CreateWM;

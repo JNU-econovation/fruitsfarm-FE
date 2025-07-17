@@ -10,6 +10,8 @@ import CreateGrape from './createGrape';
 import HTGrape from './HTGrape';
 import Main from './main';
 import MainList from './mainList';
+import HTwm from './HTwm';
+import CreateWM from './createWM';
 
 function App() {
   return (
@@ -26,9 +28,11 @@ function App() {
             <Route path="mainCreate" element={<MainCreate />} />
             <Route path="create" element={<Create />} />
             <Route path="createGrape" element={<CreateGrape />} />
+            <Route path="createWM" element={<CreateWM />} />
             <Route path="HTGrape" element={<HTGrape />} />
             <Route path="main" element={<Main />} />
             <Route path="mainList" element={<MainList />} />
+            <Route path="HTwm" element={<HTwm />} />
           </Route>
         </Routes>
       </div>

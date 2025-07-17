@@ -1,6 +1,3 @@
-/*
-import { Link } from 'react-router-dom';
-*/
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from './config';
@@ -26,6 +23,7 @@ const MainList = () => {
         );
 
         const result = await response.json();
+        console.log(result);
 
         if (result.status_code === 401) {
           alert('로그인 후 이용해주세요.');
@@ -84,6 +82,15 @@ const MainList = () => {
     return '/img/default.png';
   };
 
+  const handleHT = (type, habitTrackerId) => {
+    if (type === 'grape') {
+      navigate(`/HTGrape?id=${habitTrackerId}`);
+    }
+    if (type === 'watermelon') {
+      navigate(`/HTwm?id=${habitTrackerId}`);
+    }
+  };
+
   return (
     <div className="main-container">
       <main className="main-content">
@@ -104,7 +111,12 @@ const MainList = () => {
                     style={{ width: '40px', height: '40px' }}
                   />
                 </div>
-                <div className="ach">{tracker.achievement}</div>
+                <div
+                  className="ach"
+                  onClick={() => handleHT(tracker.type, tracker.habitTrackerId)}
+                >
+                  {tracker.achievement}
+                </div>
                 <div className="period">
                   {tracker.startDate} - {tracker.endDate}
                   <button

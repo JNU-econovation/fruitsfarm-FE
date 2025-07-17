@@ -16,7 +16,7 @@ const HTGrape = () => {
 
   useEffect(() => {
     if (!habitTrackerId) {
-      alert('다시 시도해주세요.'); //삭제
+      alert('다시 시도해주세요.');
       console.log('habitTrackerId가 없습니다.');
       navigate('/main');
       return;
@@ -32,8 +32,6 @@ const HTGrape = () => {
         );
 
         const result = await response.json();
-
-        console.log(result); //지우기 currentdate 끝내면
 
         if (result.status_code === 401) {
           alert('로그인 후 이용해주세요.');

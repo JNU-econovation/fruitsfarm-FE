@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(245, 245, 245);
+}
+
+.main-container-CG {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+}
+
+.create-box-CG {
+  background-color: #ffeff6;
+  width: 1100px;
+  height: 700px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  border: 1px solid darkgray;
+  padding: 60px;
+  border-radius: 5px;
+}
+
+.inputText {
+  width: 100%;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 30px;
+}
+
+.inputDate {
+  width: 130px;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 30px;
+  color: rgb(84, 84, 84);
+  font-weight: bold;
+}
+
+.SubBtn {
+  width: 120px;
+  height: 60px;
+  background-color: #000000;
+  color: white;
+  font-size: 20px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-top: 80px;
+}
