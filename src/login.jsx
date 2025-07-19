@@ -28,14 +28,19 @@ const Login = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || '로그인 실패');
+        alert(data.error?.message || '다시 로그인 해주세요.');
+        return;
       }
 
-      alert(`반갑습니다, ${accountId} 님`);
-      navigate('/main');
+      if (data.success) {
+        alert(`반갑습니다, ${accountId} 님`);
+        navigate('/main');
+      } else {
+        alert(data.message || '다시 로그인 해주세요.');
+      }
     } catch (error) {
-      alert(error.message);
-      console.error('로그인 실패', error);
+      console.log('서버 오류', error);
+      alert('서버 오류');
     }
   };
 
@@ -48,7 +53,6 @@ const Login = () => {
       <header className="header">
         <div className="logo">
           <img src="h_logo.png" alt="h_logo" />
-          {/*로그인이 안 됐을때 메인 페이지 누르면 로그인 되도록 추가하기*/}
         </div>
       </header>
       <section className="login-form">

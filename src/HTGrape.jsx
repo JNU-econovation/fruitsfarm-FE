@@ -1,33 +1,110 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './HTGrape.css';
+import { useLocation } from 'react-router-dom';
+import config from './config';
+import { useNavigate } from 'react-router-dom';
 
 const HTGrape = () => {
-  // progress 상태: 하드코딩된 예시 (true/false 반복)
+  const [habitData, setHabitData] = useState(null); //로딩 화면 분기를 위해서
+  const [loading, setLoading] = useState(true);
 
-  const [habitData, setHabitData] = useState({
-    habitTrackerId: 1,
-    memberId: 10,
-    type: 'grape',
-    achievement: '운동하기',
-    motivation: '건강',
-    startDate: '2025-05-01',
-    endDate: '2025-05-30',
-    progress: [true, false, true, false, true, false, true, false, true, false],
-    currentDate: 1,
-  });
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const habitTrackerId = params.get('id');
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!habitTrackerId) {
+      alert('다시 시도해주세요.');
+      console.log('habitTrackerId가 없습니다.');
+      navigate('/main');
+      return;
+    }
+
+    (async () => {
+      try {
+        const response = await fetch(
+          `${config.serverURL}/api/v1/habit-trackers/${habitTrackerId}`,
+          {
+            credentials: 'include',
+          }
+        );
+
+        const result = await response.json();
+
+        if (result.status_code === 401) {
+          alert('로그인 후 이용해주세요.');
+          navigate('/login');
+          return;
+        }
+
+        if (result.success) {
+          let parsedProgress;
+          try {
+            parsedProgress =
+              typeof result.data.progress === 'string'
+                ? JSON.parse(result.data.progress)
+                : result.data.progress;
+          } catch {
+            parsedProgress = [];
+          }
+
+          setHabitData({ ...result.data, progress: parsedProgress });
+        } else {
+          alert(result.error?.message || '데이터를 가져오지 못했습니다.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('오류가 발생했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [habitTrackerId, navigate]);
 
   const handleToggle = (index) => {
-    const updatedProgress = habitData.progress.map((val, i) =>
-      i === index ? !val : val
-    );
-    setHabitData({ ...habitData, progress: updatedProgress });
-
-    // 백엔드 전송용 콘솔
-    console.log('변경된 progress:', updatedProgress);
+    if (!habitData) return;
+    setHabitData((prev) => ({
+      ...prev,
+      progress: prev.progress.map((v, i) => (i === index ? !v : v)),
+    }));
   };
 
+  const handleSave = async () => {
+    if (!habitData) return;
+
+    try {
+      const response = await fetch(
+        `${config.serverURL}/api/v1/habit-trackers/${habitTrackerId}`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            progress: JSON.stringify(habitData.progress),
+          }),
+        }
+      );
+
+      const result = await response.json();
+      if (result.success) {
+        alert('저장되었습니다!');
+      } else {
+        alert(result.error?.message || '저장에 실패했습니다.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('오류가 발생했습니다.');
+    }
+  };
+
+  //로딩처리
+  if (loading)
+    return <p style={{ textAlign: 'center' }}> 해빗트래커를 불러오는 중…</p>;
+  if (!habitData) return <p style={{ textAlign: 'center' }}>데이터 없음</p>;
+
   const pathList = [
-    // 아래는 path d 값들만 나열 (index는 위에서부터 0번 ~)
     'M144.211 229.736C174.151 240.633 207.304 225.066 218.26 194.965C229.215 164.864 213.826 131.629 183.886 120.731C153.946 109.834 120.793 125.402 109.837 155.502C98.8815 185.603 114.271 218.839 144.211 229.736Z',
     'M227.211 263.736C257.151 274.633 290.304 259.066 301.26 228.965C312.215 198.864 296.826 165.629 266.886 154.731C236.946 143.834 203.793 159.402 192.837 189.502C181.882 219.603 197.271 252.839 227.211 263.736Z',
     'M148.211 322.736C178.151 333.633 211.304 318.066 222.26 287.965C233.215 257.864 217.826 224.629 187.886 213.731C157.946 202.834 124.793 218.402 113.837 248.502C102.882 278.603 118.271 311.839 148.211 322.736Z',
@@ -43,8 +120,7 @@ const HTGrape = () => {
   return (
     <div className="main-container-CG">
       <main className="main-content-CG">
-        {/*로그인 확인해서 다르게 보여줘야 함*/}
-        <div className="create-box-CG">
+        <div className="create-box-CG-gr">
           <h1>포도 습관 기록</h1>
           <div className="HT">
             <div className="HT-Text">
@@ -83,22 +159,27 @@ const HTGrape = () => {
                   strokeLinejoin="round"
                   fill="none"
                 />
-                {pathList.map((d, index) => (
-                  <path
-                    key={index}
-                    d={d}
-                    fill={habitData.progress[index] ? '#800080' : 'white'}
-                    stroke="black"
-                    strokeWidth="15"
-                    strokeMiterlimit="10"
-                    onClick={() => handleToggle(index)} // 클릭시 상태 토글
-                    style={{ cursor: 'pointer' }}
-                  />
-                ))}
+                {pathList.map((d, index) => {
+                  const filled = habitData.progress?.[index] === true;
+                  return (
+                    <path
+                      key={index}
+                      d={d}
+                      fill={filled ? '#800080' : 'white'}
+                      stroke="black"
+                      strokeWidth="15"
+                      strokeMiterlimit="10"
+                      onClick={() => handleToggle(index)}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  );
+                })}
               </svg>
             </div>
             <div className="btn-box">
-              <button className="saveBtn">저장</button>
+              <button className="saveBtn" onClick={handleSave}>
+                저장
+              </button>
             </div>
           </div>
         </div>

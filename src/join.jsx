@@ -43,20 +43,17 @@ const Join = () => {
       });
 
       if (!response.ok) {
-        // 응답 상태 코드가 200이 아닌 경우
         throw new Error('서버 오류');
       }
 
-      // 서버 응답을 확인
-      const textResponse = await response.text(); // JSON 말고 텍스트 응답을 확인
-      console.log('서버 응답:', textResponse);
-
+      // 서버 응답
       const data = await response.json();
+
       if (data.success) {
-        alert('회원가입 완료');
+        alert('회원가입 성공했습니다.');
         navigate('/login');
       } else {
-        alert(data.message || '회원가입에 실패했습니다.');
+        alert(data.data || '회원가입에 실패했습니다.');
       }
     } catch (error) {
       console.log('서버 오류', error);
@@ -73,27 +70,35 @@ const Join = () => {
     }
 
     try {
-      // 아이디 중복 확인 API 호출
       const response = await fetch(
-        config.serverURL + '/api/v1/check-accountId',
+        `${
+          config.serverURL
+        }/api/v1/check-accountId?accountId=${encodeURIComponent(
+          accountIdTrimmed
+        )}`,
         {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ accountId: accountIdTrimmed }),
+          method: 'GET',
         }
       );
 
-      const textResponse = await response.text();
-      console.log('서버 응답:', textResponse);
-      const data = JSON.parse(textResponse);
+      if (response.status === 409) {
+        alert('중복된 아이디입니다.');
+        setIdConfirmed(false);
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error('서버 오류');
+      }
+
+      const data = await response.json();
+      console.log('서버 응답:', data);
       if (data.success) {
-        setIdConfirmed(true); // 아이디 중복 확인 성공 시 상태 변경
-        alert(data.message);
+        setIdConfirmed(true);
+        alert(data.data);
       } else {
-        setIdConfirmed(false); // 아이디 중복 확인 실패 시 상태 변경
-        alert(data.message);
+        setIdConfirmed(false);
+        alert(data.data);
       }
     } catch (error) {
       console.log('서버 오류', error);

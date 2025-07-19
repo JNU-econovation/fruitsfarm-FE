@@ -8,8 +8,12 @@ body {
   background-color: rgb(245, 245, 245);
 }
 
+.logo {
+  padding-top: 5px;
+}
+
 .logo img {
-  width: 300px;
+  width: 200px;
   background-color: transparent;
 }
 
@@ -86,9 +90,10 @@ section.join_form h1 {
 }
 
 .id_pw button {
+  width: 60px;
   height: 50px;
   padding: 0 10px;
-  font-size: 18px;
+  font-size: 16px;
   background-color: rgb(157, 157, 157);
   border: none;
   cursor: pointer;
@@ -126,7 +131,7 @@ section.join_form h1 {
   width: 100%;
   height: 50px;
   margin-left: 7px;
-  background-color: rgb(110, 36, 133);
+  background-color: #000000;
   color: white;
   font-size: 20px;
   border: 0;

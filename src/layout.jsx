@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import config from './config';
 import './layout.css';
-
+//세션 유효성 확인하고 안되면 로그인으로 이동 로직 추가!!!!!
 const Layout = () => {
   const navigate = useNavigate();
 
@@ -10,19 +10,30 @@ const Layout = () => {
     try {
       const response = await fetch(config.serverURL + '/api/v1/logout', {
         method: 'POST',
-        headers: { 'Content-Type': 'applicatin/json' },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
       });
 
+      const data = await response.json();
+      console.log(data);
+
       if (!response.ok) {
-        console.error('로그아웃 실패');
-        throw new Error('로그아웃 실패');
+        alert(data.error?.message || '다시 시도해주세요.');
+        if (response.status === 400) {
+          navigate('/login');
+        }
+        return;
       }
 
-      alert('로그아웃 되었습니다.');
-      navigate('/login');
+      if (data.success) {
+        alert(data.data);
+        navigate('/login');
+      } else {
+        alert('오류가 발생하였습니다.');
+      }
     } catch (error) {
-      console.log('오류가 발생했습니다.', error);
+      console.log('서버 오류', error);
+      alert('서버 오류');
     }
   };
 

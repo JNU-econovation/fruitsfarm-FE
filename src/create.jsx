@@ -12,17 +12,14 @@ const Create = () => {
 
   const GoHTGrape = () => {
     navigate('/createGrape');
-    /*바꾸기*/
   };
   const GoHTWM = () => {
-    navigate('/main');
-    /*바꾸기*/
+    navigate('/createWM');
   };
 
   return (
     <div className="main-container">
       <main className="main-content">
-        {/*로그인 확인해서 다르게 보여줘야 함*/}
         <div className="create-box">
           <img
             src="/create_grapes.jpg"
