@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import config from './config';
-import './mainList.css';
+import config from '../config';
+import '../style/mainList.css';
+import list_grape from '../assets/list_grape.png';
+import list_wm from '../assets/list_wm.png';
 
 const MainList = () => {
   const navigate = useNavigate();
@@ -77,8 +79,8 @@ const MainList = () => {
   };
 
   const getImage = (type) => {
-    if (type === 'grape') return '/list_grape.png';
-    if (type === 'watermelon') return '/list_wm.png';
+    if (type === 'grape') return list_grape;
+    if (type === 'watermelon') return list_wm;
     return '/img/default.png';
   };
 

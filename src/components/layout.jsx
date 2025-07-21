@@ -1,8 +1,9 @@
 import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import config from './config';
-import './layout.css';
-//세션 유효성 확인하고 안되면 로그인으로 이동 로직 추가!!!!!
+import config from '../config';
+import '../components/layout.css';
+import h_logo from '../assets/h_logo.png';
+
 const Layout = () => {
   const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ const Layout = () => {
       <header className="header">
         <div className="logo">
           <Link to="/main">
-            <img className="logo-img" src="h_logo.png" alt="h_logo" />
+            <img className="logo-img" src={h_logo} alt="h_logo" />
           </Link>
         </div>
         <div className="nav-buttons">

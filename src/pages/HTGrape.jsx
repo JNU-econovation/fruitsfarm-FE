@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './HTGrape.css';
+import '../style/HTGrape.css';
 import { useLocation } from 'react-router-dom';
-import config from './config';
+import config from '../config';
 import { useNavigate } from 'react-router-dom';
 
 const HTGrape = () => {

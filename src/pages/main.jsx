@@ -1,11 +1,7 @@
-/*import { useState } from 'react';
-import config from './config';
-import { Link } from 'react-router-dom';
-*/
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import config from './config';
-import './main.css';
+import config from '../config';
+import '../style/main.css';
 
 const Main = () => {
   const navigate = useNavigate();
