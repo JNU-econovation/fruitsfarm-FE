@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './join.css';
-import config from './config';
+import '../style/join.css';
+import config from '../config';
+import h_logo from '../assets/h_logo.png';
 
 const Join = () => {
   const [accountId, setAccountId] = useState('');
@@ -111,7 +112,7 @@ const Join = () => {
       <header>
         <div className="header">
           <div className="logo">
-            <img src="h_logo.png" alt="h_logo" />
+            <img src={h_logo} alt="h_logo" />
           </div>
         </div>
       </header>

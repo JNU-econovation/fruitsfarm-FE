@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Join from './join';
-import Login from './login';
-import MainCreate from './mainCreate';
-import Layout from './layout';
-import Create from './create';
-import CreateGrape from './createGrape';
-import HTGrape from './HTGrape';
-import Main from './main';
-import MainList from './mainList';
-import HTwm from './HTwm';
-import CreateWM from './createWM';
+import Join from './pages/join';
+import Login from './pages/login';
+import MainCreate from './pages/mainCreate';
+import Layout from './components/layout';
+import Create from './pages/create';
+import CreateGrape from './pages/createGrape';
+import HTGrape from './pages/HTGrape';
+import Main from './pages/main';
+import MainList from './pages/mainList';
+import HTwm from './pages/HTwm';
+import CreateWM from './pages/createWM';
 
 function App() {
   return (

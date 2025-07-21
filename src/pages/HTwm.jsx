@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './HTwm.css';
+import '../style/HTwm.css';
 import { useLocation } from 'react-router-dom';
-import config from './config';
+import config from '../config';
 import { useNavigate } from 'react-router-dom';
+import wmwm from '../assets/wmwm.png';
 
 const HTwm = () => {
   const [habitData, setHabitData] = useState(null); //로딩 화면 분기를 위해서
@@ -161,7 +162,7 @@ const HTwm = () => {
               style={{ position: 'relative', width: '400px', height: '400px' }}
             >
               <img
-                src="./wmwm.png"
+                src={wmwm}
                 alt="수박"
                 style={{ width: '750px', transform: 'translate(-80px, -50px)' }}
               ></img>

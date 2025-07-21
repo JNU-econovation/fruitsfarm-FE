@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './createWM.css';
-import config from './config';
+import '../style/createGrape.css';
+import config from '../config';
 
-const CreateWM = () => {
+const CreateGrape = () => {
   const [goal, setgoal] = useState('');
   const [cheer, setcheer] = useState('');
   const [startDate, setstartDate] = useState('');
@@ -21,7 +21,7 @@ const CreateWM = () => {
     }
 
     const requestBody = {
-      type: 'watermelon',
+      type: 'grape',
       achievement: goal,
       motivation: cheer,
       startDate: startDate,
@@ -52,7 +52,7 @@ const CreateWM = () => {
 
       if (result.success) {
         const habitTrackerId = result.data.habitTrackerId;
-        navigate(`/HTwm?id=${habitTrackerId}`);
+        navigate(`/HTGrape?id=${habitTrackerId}`);
       } else {
         alert('생성에 실패했습니다.');
       }
@@ -64,8 +64,8 @@ const CreateWM = () => {
   return (
     <div className="main-container-CG">
       <main className="main-content-CG">
-        <div className="create-box-CG-wm">
-          <h1>수박 습관 기록</h1>
+        <div className="create-box-CG-gr">
+          <h1>포도 습관 기록</h1>
           <input
             className="inputText"
             type="text"
@@ -99,4 +99,4 @@ const CreateWM = () => {
   );
 };
 
-export default CreateWM;
+export default CreateGrape;

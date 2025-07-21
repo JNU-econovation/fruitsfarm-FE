@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import config from './config';
-import './login.css';
+import config from '../config';
+import '../style/login.css';
+import h_logo from '../assets/h_logo.png';
 
 const Login = () => {
   const [accountId, setAccountId] = useState('');
@@ -52,7 +53,7 @@ const Login = () => {
     <div className="login-container">
       <header className="header">
         <div className="logo">
-          <img src="h_logo.png" alt="h_logo" />
+          <img src={h_logo} alt="h_logo" />
         </div>
       </header>
       <section className="login-form">
