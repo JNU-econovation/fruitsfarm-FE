@@ -16,7 +16,6 @@ const Layout = () => {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         alert(data.error?.message || '다시 시도해주세요.');
