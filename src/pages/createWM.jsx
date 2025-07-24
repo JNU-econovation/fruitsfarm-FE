@@ -42,8 +42,6 @@ const CreateWM = () => {
 
       const result = await response.json();
 
-      console.log(result);
-
       if (result.status_code === 401) {
         alert('로그인 후 이용해주세요.');
         navigate('/login');
